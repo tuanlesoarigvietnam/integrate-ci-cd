@@ -18,4 +18,4 @@ jobs:
           password: ${{ secrets.REMOTE_SSH_PW }}
           port: 22
           script: |
-            ${{ secrets.REMOTE_SCRIPT }}
+            cd ${{ secrets.REMOTE_WORK_DIR }}
