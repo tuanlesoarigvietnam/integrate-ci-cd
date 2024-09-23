@@ -1,0 +1,21 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Connect to VPS server and pull code from GitHub
+        uses: appleboy/ssh-action@v0.1.3
+        with:
+          host: ${{ secrets.REMOTE_SSH_HOST }}
+          username: ${{ secrets.REMOTE_SSH_USER }}
+          password: ${{ secrets.REMOTE_SSH_PW }}
+          port: 22
+          script: |
+            ${{ secrets.REMOTE_SCRIPT }}
